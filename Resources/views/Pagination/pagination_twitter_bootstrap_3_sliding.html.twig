@@ -1,0 +1,47 @@
+{% import "ElaoThemeBundle::macros.html.twig" as macros %}
+
+{% if pageCount > 1 %}
+    {% if first is defined %}
+    <ul class="pagination">
+        <li class="first {{ current != first ? '' : 'disabled' }}">
+            <a href="{{ path(route, query|merge({(pageParameterName): first})) }}" title="{{ 'interface.first'|trans }}" {{ macros.tooltip() }}>
+                <span class="glyphicon glyphicon-step-backward"></span>
+            </a>
+        </li>
+    </ul>
+    {% endif %}
+
+    <ul class="pagination">
+        <li class="previous {{ previous is defined ? '' : 'disabled' }}">
+            {% set previous_url = previous is defined ? path(route, query|merge({(pageParameterName): previous})) : '#' %}
+            <a href="{{ previous_url }}" title="{{ 'interface.previous'|trans }}" {{ macros.tooltip() }}>
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </li>
+
+        {% for page in pagesInRange %}
+        <li class="{{ page != current ? '' : 'active' }}">
+            <a href="{{ page != current ? path(route, query|merge({(pageParameterName): page})) : '#' }}">
+                {{ page }}
+            </a>
+        </li>
+        {% endfor %}
+
+        <li class="next {{ next is defined ? '' : 'disabled' }}">
+            {% set next_url = next is defined ? path(route, query|merge({(pageParameterName): next})) : '#' %}
+            <a href="{{ next_url }}" title="{{ 'interface.next'|trans }}" {{ macros.tooltip() }}>
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </li>
+    </ul>
+
+    {% if last is defined %}
+    <ul class="pagination">
+        <li class="last {{ current != last ? '' : 'disabled' }}">
+            <a href="{{ path(route, query|merge({(pageParameterName): last})) }}" title="{{ 'interface.last'|trans }}" {{ macros.tooltip() }}>
+                <span class="glyphicon glyphicon-step-forward"></span>
+            </a>
+        </li>
+    </ul>
+    {% endif %}
+{% endif %}
