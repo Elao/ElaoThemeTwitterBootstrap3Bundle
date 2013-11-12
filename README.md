@@ -1,4 +1,4 @@
-ElaoThemeTwitterBootstrap3
-==========================
+ElaoThemeTwitterBootstrap3Bundle
+================================
 
-Elao Theme Twitter Bootstrap 3
+Elao Theme Twitter Bootstrap 3 Bundle

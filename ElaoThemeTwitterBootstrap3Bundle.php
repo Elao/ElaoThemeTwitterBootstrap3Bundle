@@ -1,6 +1,6 @@
 <?php 
 
-namespace Elao\Theme\TwitterBootstrap3;
+namespace Elao\ThemeBundle\TwitterBootstrap3Bundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -10,7 +10,7 @@ class ElaoThemeTwitterBootstrap3Bundle extends Bundle
 	 * {@inheritdoc}
 	 */ 
 	public function getParent()
-    {
-        return 'ElaoThemeBundle';
-    }
+	{
+		return 'ElaoThemeBundle';
+	}
 }

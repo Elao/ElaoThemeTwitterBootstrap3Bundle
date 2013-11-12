@@ -1,9 +1,9 @@
 {
-    "name": "elao/theme-twitter-bootstrap-3",
+    "name": "elao/theme-twitter-bootstrap-3-bundle",
     "type": "symfony-bundle",
-    "description": "Twitter Bootstrap 3 theme for ElaoThemeBundle",
-    "keywords": ["elao", "theme", "twitter", "bootstrap", "3"],
-    "homepage": "https://github.com/Elao/ElaoThemeTwitterBoostrap3",
+    "description": "Twitter Bootstrap 3 theme bundle for ElaoThemeBundle",
+    "keywords": ["elao", "theme-bundle"],
+    "homepage": "https://github.com/Elao/ElaoThemeTwitterBoostrap3Bundle",
     "licence": "MIT",
     "authors": [
         {
@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Elao\\Theme\\TwitterBootstrap3": "."
+            "Elao\\ThemeBundle\\TwitterBootstrap3Bundle": "."
         }
     },
     "extra": {
@@ -29,5 +29,5 @@
             "dev-master": "1.0.x-dev"
         }
     },
-    "target-dir": "Elao/Theme/TwitterBootstrap3"
+    "target-dir": "Elao/ThemeBundle/TwitterBootstrap3Bundle"
 }
