@@ -2,8 +2,8 @@
 
 namespace Elao\ThemeBundle\TwitterBootstrap3Bundle\Twig\Extension;
 
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\Options;
+use Elao\ThemeBundle\TwitterBootstrap3Bundle\Util\TooltipBag;
+use Elao\ThemeBundle\TwitterBootstrap3Bundle\Util\PopoverBag;
 
 class TwitterBootstrap3Extension extends \Twig_Extension
 {
@@ -69,48 +69,12 @@ class TwitterBootstrap3Extension extends \Twig_Extension
      */
     public function tooltip($parameters = array())
     {
-        $resolver = new OptionsResolver();
-
-        $resolver->setOptional(
-            array(
-                'animation',
-                'html',
-                'placement',
-                'selector',
-                'title',
-                'trigger',
-                'delay',
-                'container',
-            )
-        );
-
-        $resolver->setAllowedTypes(
-            array(
-                'animation' => 'bool',
-                'html'      => 'bool',
-                'placement' => 'string',
-                'selector'  => array('string', 'bool'),
-                'title'     => 'string',
-                'container' => array('string', 'bool'),
-            )
-        );
-
-        $resolver->setAllowedValues(
-            array(
-                'placement' => array('top', 'bottom', 'left', 'right', 'auto'),
-                'trigger'   => array('click', 'hover', 'focus', 'manual'),
-            )
-        );
-
-        $attributes = array_merge(
-            $resolver->resolve($parameters),
-            array('toggle' => 'tooltip')
-        );
+        $bag = new TooltipBag($parameters);
 
         return $this->templating->render(
             'ElaoThemeTwitterBootstrap3Bundle:Block:data_attributes.html.twig',
             array(
-                'attributes' => $attributes,
+                'attributes' => $bag->getAttributes(),
             )
         );
     }
@@ -123,50 +87,12 @@ class TwitterBootstrap3Extension extends \Twig_Extension
      */
     public function popover($parameters = array())
     {
-        $resolver = new OptionsResolver();
-
-        $resolver->setOptional(
-            array(
-                'animation',
-                'html',
-                'placement',
-                'selector',
-                'trigger',
-                'title',
-                'content',
-                'delay',
-                'container',
-            )
-        );
-
-        $resolver->setAllowedTypes(
-            array(
-                'animation' => 'bool',
-                'html'      => 'bool',
-                'placement' => 'string',
-                'selector'  => array('string', 'bool'),
-                'title'     => 'string',
-                'content'   => 'string',
-                'container' => array('string', 'bool'),
-            )
-        );
-
-        $resolver->setAllowedValues(
-            array(
-                'placement' => array('top', 'bottom', 'left', 'right', 'auto'),
-                'trigger'   => array('click', 'hover', 'focus', 'manual'),
-            )
-        );
-
-        $attributes = array_merge(
-            $resolver->resolve($parameters),
-            array('toggle' => 'popover')
-        );
+        $bag = new PopoverBag($parameters);
 
         return $this->templating->render(
             'ElaoThemeTwitterBootstrap3Bundle:Block:data_attributes.html.twig',
             array(
-                'attributes' => $attributes,
+                'attributes' => $bag->getAttributes(),
             )
         );
     }
