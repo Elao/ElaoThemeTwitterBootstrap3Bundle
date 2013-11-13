@@ -79,7 +79,7 @@
 {% spaceless %}
     <div {{ block('widget_container_attributes') }}>
     {% for child in form %}
-        {{ form_row(child) }}
+        {{ form_row(child, { 'box_inline': box_inline|default(false) }) }}
     {% endfor %}
     </div>
 {% endspaceless %}
@@ -109,7 +109,7 @@
     {{ form_errors(form) }}
     {{ form_widget(form) }}
 {% else %}
-    <div {{ block('row_container_attributes') }}>        
+    <div {{ block('row_container_attributes') }}>
         {% if control_group|default(false) %}
             <div {{ block('control_group_attributes') }}>
         {% endif %}
