@@ -12,7 +12,8 @@
 {% block form_row %}
 {% spaceless %}
     {% set control_group = true %}
-    {% set control_group_attr = control_group_attr|default({})|merge({'class': (control_group_attr.class|default('') ~ ' col-md-8')|trim}) %}
+    {% set control_group_class = control_group_class|default('col-lg-9 col-md-9 col-sm-9') %}
+    {% set control_group_attr = control_group_attr|default({})|merge({'class': (control_group_attr.class|default('') ~ ' ' ~ control_group_class)|trim}) %}
     {{ parent() }}
 {% endspaceless %}
 {% endblock form_row %}
@@ -21,7 +22,8 @@
 
 {% block form_label %}
 {% spaceless %}
-    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' col-md-4')|trim}) %}
+    {% set control_label_class = control_label_class|default('col-lg-3 col-md-3 col-sm-3') %}
+    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' ' ~ control_label_class)|trim}) %}
     {{ parent() }}
 {% endspaceless %}
 {% endblock form_label %}
