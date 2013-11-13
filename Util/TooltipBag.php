@@ -5,8 +5,14 @@ namespace Elao\ThemeBundle\TwitterBootstrap3Bundle\Util;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Elao\ThemeBundle\TwitterBootstrap3Bundle\Util\AttributeBag;
 
+/**
+ * Tooltip HTML Attributes Bag
+ */
 class TooltipBag extends AttributeBag
 {
+    /**
+     * {@inheritdoc}
+     */
     protected function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(

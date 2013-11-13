@@ -5,8 +5,14 @@ namespace Elao\ThemeBundle\TwitterBootstrap3Bundle\Util;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Elao\ThemeBundle\TwitterBootstrap3Bundle\Util\TooltipBag;
 
+/**
+ * Popover HTML Attributes Bag
+ */
 class PopoverBag extends TooltipBag
 {
+    /**
+     * {@inheritdoc}
+     */
     protected function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         parent::setDefaultOptions($resolver);

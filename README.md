@@ -1,7 +1,7 @@
 ElaoThemeTwitterBootstrap3Bundle
 ================================
 
-Elao Theme Twitter Bootstrap 3 Bundle
+Twitter Bootstrap 3 theme for Elao Theme Bundle
 
 Twig helpers
 ------------

@@ -5,6 +5,9 @@ namespace Elao\ThemeBundle\TwitterBootstrap3Bundle\Util;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * HTML Attributes Bag
+ */
 abstract class AttributeBag
 {
     /**
