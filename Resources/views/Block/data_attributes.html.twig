@@ -1,0 +1,5 @@
+{% spaceless %}
+    {% for key, value in attributes %}
+        data-{{ key }}="{{ value|bool_to_str|e('html_attr') }}"
+    {% endfor %}
+{% endspaceless %}

@@ -10,6 +10,7 @@
 
     <services>
         <service id="elao.twig.theme_twitter_bootstrap_3_extension" class="%elao.twig.theme_twitter_bootstrap_3_extension.class%">
+            <argument type="service" id="twig" />
             <tag name="twig.extension" />
         </service>
     </services>
