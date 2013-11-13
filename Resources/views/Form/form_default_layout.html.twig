@@ -1,54 +1,60 @@
 {% extends "ElaoFormBundle:Form:form_elao_layout.html.twig" %}
 
 {% block form_start %}
-    {% set form_class = form_class|default(horizontal|default(false) ? 'form-horizontal' : inline|default(false) ? 'form-inline' : 'form') %}
+{% spaceless %}
+    {% set form_class = form_class|default('form') %}
     {{ parent() }}
+{% endspaceless %}
 {% endblock form_start %}
 
-{% block form_help %}
-    {% set help_class = help_class|default('help-block') %}
-    {{ parent() }}
-{% endblock %}
+{# Form row #}
 
-{% block group_attributes %}
+{% block row_container_attributes %}
 {% spaceless %}
     {% set group_attr = group_attr|default({}) %}
     {% set group_class = group_class|default('form-group') %}
     {% set group_error_class = group_error_class|default('has-error') %}
     {{ parent() }}
 {% endspaceless %}
-{% endblock group_attributes %}
+{% endblock row_container_attributes %}
+
+{# Form label #}
+
+{% block form_label %}
+{% spaceless %}
+    {% set label_class = label_class|default('control-label') %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock form_label %}
+
+{# Widget classes #}
 
 {% block form_widget %}
 {% spaceless %}
     {% if not compound or expanded|default(true) is sameas(false) %}
         {% set control_class = control_class|default('form-control') %}
-        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ control_class)|trim }) %}
     {% endif %}
     {{ parent() }}
 {% endspaceless %}
 {% endblock form_widget %}
 
-{% block form_widget_simple %}
-{% spaceless %}
-    {% set control_class = control_class|default('form-control') %}
-    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ control_class)|trim }) %}
-    {{ parent() }}
-{% endspaceless %}
-{% endblock form_widget_simple %}
-
 {% block textarea_widget %}
 {% spaceless %}
     {% set control_class = control_class|default('form-control') %}
-    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ control_class)|trim }) %}
     {{ parent() }}
 {% endspaceless %}
 {% endblock textarea_widget %}
 
+{% block form_widget_simple %}
+{% spaceless %}
+    {% set control_class = control_class|default('form-control') %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock form_widget_simple %}
+
 {% block choice_widget_collapsed %}
 {% spaceless %}
     {% set control_class = control_class|default('form-control') %}
-    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ control_class)|trim }) %}
     {{ parent() }}
 {% endspaceless %}
 {% endblock choice_widget_collapsed %}
@@ -59,3 +65,87 @@
     {% set attr = attr|merge({'class': attr.class|default('') ~ ' btn ' ~ btn_class }) %}
     {{ parent() }}
 {% endblock button_widget %}
+
+{# Help blocks #}
+
+{% block form_help %}
+    {% set help_class = help_class|default('help-block') %}
+    {{ parent() }}
+{% endblock %}
+
+{# Checkbox and radio #}
+
+{% block choice_widget_expanded %}
+{% spaceless %}
+    <div {{ block('widget_container_attributes') }}>
+    {% for child in form %}
+        {{ form_row(child) }}
+    {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock choice_widget_expanded %}
+
+{# Checkbox and radio #}
+
+{% block checkbox_row %}
+    {% if label is sameas(null) %}
+    {{ form_row(form) }}
+    {% else %}
+    {% set group_class = (group_class|default('') ~ ' checkbox' ~ (box_inline|default(false) ? '-inline' : ''))|trim %}
+    {{ block('box_row') }}
+    {% endif %}
+{% endblock checkbox_row %}
+
+{% block radio_row %}
+    {% set group_class = 'radio' ~ (box_inline|default(false) ? '-inline' : '') %}
+    {{ block('box_row') }}
+{% endblock radio_row %}
+
+{% block box_row %}
+{% spaceless %}
+{% set widget = widget|default('default') %}
+
+{% if widget == 'hidden' %}
+    {{ form_errors(form) }}
+    {{ form_widget(form) }}
+{% else %}
+    <div {{ block('row_container_attributes') }}>        
+        {% if control_group|default(false) %}
+            <div {{ block('control_group_attributes') }}>
+        {% endif %}
+
+            {% set help = help|default(false) %}
+            {% set help_position = help_position|default('bottom') %}
+
+            {{ help and help_position == 'top' ? block('form_help') : '' }}
+
+            {% if label is not sameas(false) %}
+                {% if not compound %}
+                    {% set label_attr = label_attr|merge({'for': id}) %}
+                {% endif %}
+                {% if required %}
+                    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+                {% endif %}
+                {% if label is empty %}
+                    {% set label = name|humanize %}
+                {% endif %}
+                <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                    {{ form_widget(form) }} {{ label|trans(label_parameters|default({}), translation_domain)|raw }}
+                </label>
+            {% else %}
+                {{ form_widget(form) }}
+            {% endif %}
+
+            {% block form_row_widget_container_errors form_errors(form) %}
+
+            {{ help and help_position == 'bottom' ? block('form_help') : '' }}
+
+            {{ block('collection_delete_button') }}
+
+        {% if control_group|default(false) %}
+            </div>
+        {% endif %}
+    </div>
+{% endif %}
+{% endspaceless %}
+{% endblock box_row %}
