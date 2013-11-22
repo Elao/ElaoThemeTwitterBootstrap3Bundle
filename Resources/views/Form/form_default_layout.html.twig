@@ -149,3 +149,18 @@
 {% endif %}
 {% endspaceless %}
 {% endblock box_row %}
+
+{# Collection #}
+{% block collection_add_button %}
+{% spaceless %}
+    {% set button_class = button_class|default("btn btn-success") %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock collection_add_button %}
+
+{% block collection_delete_button %}
+{% spaceless %}
+    {% set button_class = button_class|default("btn btn-danger") %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock collection_delete_button %}
