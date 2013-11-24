@@ -68,6 +68,7 @@ class TwitterBootstrap3Extension extends \Twig_Extension
      * Tooltip
      *
      * @param array $parameters
+     *
      * @return string
      */
     public function tooltip($parameters = array())
@@ -86,6 +87,7 @@ class TwitterBootstrap3Extension extends \Twig_Extension
      * Popover
      *
      * @param array $parameters
+     *
      * @return string
      */
     public function popover($parameters = array())
@@ -104,6 +106,7 @@ class TwitterBootstrap3Extension extends \Twig_Extension
      * Give the string version of a boolean (for Twitter Boostrap 3 javascript config)
      *
      * @param boolean $value
+     *
      * @return string
      */
     public function booleanToString($value = null)
