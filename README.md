@@ -3,6 +3,17 @@ ElaoThemeTwitterBootstrap3Bundle
 
 Twitter Bootstrap 3 theme for Elao Theme Bundle
 
+Form Themes
+-----------
+
+Two form layouts provided:
+- __form_default_layout.html.twig__ (applied by default by the [ElaoThemeBundle](https://github.com/Elao/ElaoThemeBundle))
+- __form_horizontal_layout.html.twig__
+
+To theme a specifique form as horizontal :
+
+    {% form_theme form 'ElaoThemeTwitterBootstrap3Bundle:Form:form_horizontal_layout.html.twig' %}
+
 Twig helpers
 ------------
 
