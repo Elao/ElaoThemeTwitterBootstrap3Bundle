@@ -1,9 +1,9 @@
 <?php
 
-namespace Elao\ThemeBundle\TwitterBootstrap3Bundle\Util;
+namespace Elao\Bundle\Theme\TwitterBootstrap3Bundle\Util;
 
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Elao\ThemeBundle\TwitterBootstrap3Bundle\Util\AttributeBag;
+use Elao\Bundle\Theme\TwitterBootstrap3Bundle\Util\AttributeBag;
 
 /**
  * Tooltip HTML Attributes Bag

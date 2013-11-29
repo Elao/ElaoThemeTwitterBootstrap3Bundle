@@ -1,6 +1,6 @@
 <?php
 
-namespace Elao\ThemeBundle\TwitterBootstrap3Bundle\DependencyInjection;
+namespace Elao\Bundle\Theme\TwitterBootstrap3Bundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

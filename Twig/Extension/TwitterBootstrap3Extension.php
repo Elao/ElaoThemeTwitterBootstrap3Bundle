@@ -1,9 +1,9 @@
 <?php
 
-namespace Elao\ThemeBundle\TwitterBootstrap3Bundle\Twig\Extension;
+namespace Elao\Bundle\Theme\TwitterBootstrap3Bundle\Twig\Extension;
 
-use Elao\ThemeBundle\TwitterBootstrap3Bundle\Util\TooltipBag;
-use Elao\ThemeBundle\TwitterBootstrap3Bundle\Util\PopoverBag;
+use Elao\Bundle\Theme\TwitterBootstrap3Bundle\Util\TooltipBag;
+use Elao\Bundle\Theme\TwitterBootstrap3Bundle\Util\PopoverBag;
 
 /**
  * Elao Theme Twitter Bootstrap3 Twig Extension

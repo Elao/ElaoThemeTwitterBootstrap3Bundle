@@ -1,6 +1,6 @@
 <?php
 
-namespace Elao\ThemeBundle\TwitterBootstrap3Bundle\Util;
+namespace Elao\Bundle\Theme\TwitterBootstrap3Bundle\Util;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;

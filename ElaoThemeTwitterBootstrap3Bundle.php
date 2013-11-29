@@ -1,6 +1,6 @@
 <?php
 
-namespace Elao\ThemeBundle\TwitterBootstrap3Bundle;
+namespace Elao\Bundle\Theme\TwitterBootstrap3Bundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
