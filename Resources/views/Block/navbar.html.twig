@@ -1,4 +1,4 @@
-<div class="{% bloc navbar_class 'navbar' %}" role="navigation">
+<div class="{% block class 'navbar' %}" role="navigation">
     {% block container %}
     <div class="{% block container_class 'container' %}">
         {% if header|default(true) %}
@@ -13,11 +13,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 {% endblock header_toggle %}
-                {% block brand_link %}
-                <a class="navbar-brand" href="{{ path('admin') }}">
-                    {% block brand '' %}
-                </a>
-                {% endblock brand_link %}
+                {% block brand 'Acme' %}
             {% endblock header_content %}
         </div>
         {% endblock header_container %}
