@@ -24,5 +24,13 @@ class ElaoThemeTwitterBootstrap3Extension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+        $container->setParameter(
+            'twig.paths',
+            array_merge(
+                $container->hasParameter('twig.paths') ? $container->getParameter('twig.paths') : array(),
+                array(__DIR__.'/../Resources/views', 'elao_boostrap_3')
+            )
+        );
     }
 }
