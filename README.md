@@ -7,8 +7,15 @@ Form Themes
 -----------
 
 Two form layouts provided:
-- __form_default_layout.html.twig__ (applied by default by the [ElaoThemeBundle](https://github.com/Elao/ElaoThemeBundle))
+- __form_default_layout.html.twig__
 - __form_horizontal_layout.html.twig__
+
+To theme all forms as default :
+
+    twig:
+        form:
+            resources:
+                - "ElaoThemeTwitterBootstrap3Bundle:Form:form_default_layout.html.twig"
 
 To theme a specifique form as horizontal :
 

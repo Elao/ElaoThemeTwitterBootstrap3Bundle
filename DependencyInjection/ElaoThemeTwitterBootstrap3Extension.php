@@ -24,5 +24,8 @@ class ElaoThemeTwitterBootstrap3Extension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+        $container->setParameter('form_elao_bootstrap3_layout', 'ElaoTwitterBootstrap3Bundle:Form:form_default_layout.html.twig');
+        $container->setParameter('form_elao_bootstrap3_horizontal_layout', 'ElaoTwitterBootstrap3Bundle:Form:form_horizontal_layout.html.twig');
     }
 }
