@@ -1,5 +1,7 @@
 {% extends "@ElaoForm/Form/form_elao_layout.html.twig" %}
 
+{# Form root block #}
+
 {% block form_start %}
 {% spaceless %}
     {% set form_class = form_class|default('form') %}
@@ -8,6 +10,23 @@
 {% endblock form_start %}
 
 {# Form row #}
+
+{% block form_row %}
+{% spaceless %}
+    {% if horizontal|default(false) %}
+        {% set label_columns = label_columns|default(4) %}
+        {% set widget_columns = widget_columns|default(12 - label_columns) %}
+        {% set group_attr = group_attr|default({})|merge({'class': (group_attr.class|default('') ~ ' ' ~ 'row')|trim }) %}
+
+        {% set control_group = true %}
+        {% set control_group_attr = control_group_attr|default({})|merge({'class': (control_group_attr.class|default('') ~ ' ' ~ control_group_class|default('col-lg-' ~ widget_columns ~ ' col-md-' ~ widget_columns ~ ' col-sm-' ~ widget_columns))|trim}) %}
+
+        {% set label_group = true %}
+        {% set label_group_attr = label_group_attr|default({})|merge({'class': (label_group_attr.class|default('') ~ ' ' ~ label_group_class|default('text-right col-lg-' ~ label_columns ~ ' col-md-' ~ label_columns ~ ' col-sm-' ~ label_columns))|trim}) %}
+    {% endif %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock form_row %}
 
 {% block row_container_attributes %}
 {% spaceless %}
@@ -74,81 +93,39 @@
 {% endblock %}
 
 {# Checkbox and radio #}
-
 {% block choice_widget_expanded %}
 {% spaceless %}
     <div {{ block('widget_container_attributes') }}>
     {% for child in form %}
-        {{ form_row(child, { 'box_inline': box_inline|default(false) }) }}
+        {{ form_widget(child, {'box_inline': box_inline|default(false) }) }}
     {% endfor %}
     </div>
 {% endspaceless %}
 {% endblock choice_widget_expanded %}
 
-{# Checkbox and radio #}
+{% block checkbox_widget %}
+    {% set box_class = (group_class|default('') ~ ' checkbox' ~ (box_inline|default(false) ? '-inline' : ''))|trim %}
 
-{% block checkbox_row %}
-    {% if label is sameas(null) %}
-    {{ form_row(form) }}
+    <div class="{{ box_class }}">
+    {% if label is sameas(false) %}
+        {{ parent() }}
     {% else %}
-    {% set group_class = (group_class|default('') ~ ' checkbox' ~ (box_inline|default(false) ? '-inline' : ''))|trim %}
-    {{ block('box_row') }}
+        {{ form_label(form, parent() ~ label|trans({}, translation_domain)) }}
     {% endif %}
-{% endblock checkbox_row %}
-
-{% block radio_row %}
-    {% set group_class = 'radio' ~ (box_inline|default(false) ? '-inline' : '') %}
-    {{ block('box_row') }}
-{% endblock radio_row %}
-
-{% block box_row %}
-{% spaceless %}
-{% set widget = widget|default('default') %}
-
-{% if widget == 'hidden' %}
-    {{ form_errors(form) }}
-    {{ form_widget(form) }}
-{% else %}
-    <div {{ block('row_container_attributes') }}>
-        {% if control_group|default(false) %}
-            <div {{ block('control_group_attributes') }}>
-        {% endif %}
-
-            {% set help = help|default(false) %}
-            {% set help_position = help_position|default('bottom') %}
-
-            {{ help and help_position == 'top' ? block('form_help') : '' }}
-
-            {% if label is not sameas(false) %}
-                {% if not compound %}
-                    {% set label_attr = label_attr|merge({'for': id}) %}
-                {% endif %}
-                {% if required %}
-                    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
-                {% endif %}
-                {% if label is empty %}
-                    {% set label = name|humanize %}
-                {% endif %}
-                <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-                    {{ form_widget(form) }} {{ label|trans(label_parameters|default({}), translation_domain)|raw }}
-                </label>
-            {% else %}
-                {{ form_widget(form) }}
-            {% endif %}
-
-            {% block form_row_widget_container_errors form_errors(form) %}
-
-            {{ help and help_position == 'bottom' ? block('form_help') : '' }}
-
-            {{ block('collection_delete_button') }}
-
-        {% if control_group|default(false) %}
-            </div>
-        {% endif %}
     </div>
-{% endif %}
-{% endspaceless %}
-{% endblock box_row %}
+{% endblock checkbox_widget %}
+
+{% block radio_widget %}
+    {% set box_class = box_class|default('radio' ~ (box_inline|default(false) ? '-inline' : '')) %}
+
+    <div class="{{ box_class }}">
+    {% if label is sameas(false) %}
+        {{ parent() }}
+    {% else %}
+        {{ form_label(form, parent() ~ label|trans({}, translation_domain)) }}
+    {% endif %}
+    </div>
+{% endblock radio_widget %}
 
 {# Collection #}
 {% block collection_add_button %}

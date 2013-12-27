@@ -10,14 +10,25 @@ Two form layouts provided:
 - __form_default_layout.html.twig__
 - __form_horizontal_layout.html.twig__
 
-To theme all forms as default :
+To theme all forms as default:
 
     twig:
         form:
             resources:
                 - "ElaoThemeTwitterBootstrap3Bundle:Form:form_default_layout.html.twig"
 
-To theme a specifique form as horizontal :
+To theme a specifique form:
+
+    {% form_theme form 'ElaoThemeTwitterBootstrap3Bundle:Form:form_default_layout.html.twig' %}
+
+### Form Horizontal:
+
+To theme a specific row as horizontal (optionally specify the column width of the label):
+
+    {{ form_row(child, {horizontal: true}) }}
+    {{ form_row(child, {horizontal: true, label_columns: 2}) }}
+
+To theme a whole form as horizontal:
 
     {% form_theme form 'ElaoThemeTwitterBootstrap3Bundle:Form:form_horizontal_layout.html.twig' %}
 
