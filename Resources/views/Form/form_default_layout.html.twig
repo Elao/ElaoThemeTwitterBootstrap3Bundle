@@ -95,11 +95,12 @@
 {# Checkbox and radio #}
 {% block choice_widget_expanded %}
 {% spaceless %}
-    <div {{ block('widget_container_attributes') }}>
+    {% set tag = tag|default('fieldset') %}
+    <{{ tag }} {{ block('widget_container_attributes') }}>
     {% for child in form %}
         {{ form_widget(child, {'box_inline': box_inline|default(false) }) }}
     {% endfor %}
-    </div>
+    </{{ tag }}>
 {% endspaceless %}
 {% endblock choice_widget_expanded %}
 
