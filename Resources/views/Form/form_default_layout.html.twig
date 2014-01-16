@@ -14,7 +14,7 @@
 {% block form_row %}
 {% spaceless %}
     {% if horizontal|default(false) %}
-        {% set label_columns = label_columns|default(4) %}
+        {% set label_columns = label_columns|default(3) %}
         {% set widget_columns = widget_columns|default(12 - label_columns) %}
         {% set group_attr = group_attr|default({})|merge({'class': (group_attr.class|default('') ~ ' ' ~ 'row')|trim }) %}
 
