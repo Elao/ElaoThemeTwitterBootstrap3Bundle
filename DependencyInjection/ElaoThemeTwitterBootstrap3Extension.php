@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * This file is part of the Elao Twitter Bootstrap 3 Theme Bundle.
+ *
+ * Copyright (C) 2013 Elao
+ *
+ * @author Elao <contact@elao.com>
+ */
+
 namespace Elao\Bundle\Theme\TwitterBootstrap3Bundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -9,8 +17,6 @@ use Symfony\Component\DependencyInjection\Loader;
 
 /**
  * This is the class that loads and manages your bundle configuration
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
 class ElaoThemeTwitterBootstrap3Extension extends Extension
 {
@@ -24,8 +30,5 @@ class ElaoThemeTwitterBootstrap3Extension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
-
-        $container->setParameter('form_elao_bootstrap3_layout', 'ElaoTwitterBootstrap3Bundle:Form:form_default_layout.html.twig');
-        $container->setParameter('form_elao_bootstrap3_horizontal_layout', 'ElaoTwitterBootstrap3Bundle:Form:form_horizontal_layout.html.twig');
     }
 }
