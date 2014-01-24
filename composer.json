@@ -4,7 +4,7 @@
     "description": "Twitter Bootstrap 3 theme bundle for ElaoThemeBundle",
     "keywords": ["elao", "theme-bundle"],
     "homepage": "https://github.com/Elao/ElaoThemeTwitterBootstrap3Bundle",
-    "licence": "MIT",
+    "license": "MIT",
     "authors": [
         {
             "name": "Elao",
