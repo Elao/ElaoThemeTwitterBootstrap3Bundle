@@ -93,40 +93,27 @@
 {% endblock %}
 
 {# Checkbox and radio #}
+
 {% block choice_widget_expanded %}
 {% spaceless %}
     {% set tag = tag|default('fieldset') %}
     <{{ tag }} {{ block('widget_container_attributes') }}>
     {% for child in form %}
-        {{ form_widget(child, {'box_inline': box_inline|default(false) }) }}
+        {{ form_row(child, {'box_inline': box_inline|default(false) }) }}
     {% endfor %}
     </{{ tag }}>
 {% endspaceless %}
 {% endblock choice_widget_expanded %}
 
-{% block checkbox_widget %}
-    {% set box_class = (group_class|default('') ~ ' checkbox' ~ (box_inline|default(false) ? '-inline' : ''))|trim %}
+{% block checkbox_row %}
+    {% set group_class = group_class|default('checkbox' ~ (box_inline|default(false) ? '-inline' : ''))|trim %}
+    {{ block('box_row') }}
+{% endblock checkbox_row %}
 
-    <div class="{{ box_class }}">
-    {% if label is sameas(false) %}
-        {{ parent() }}
-    {% else %}
-        {{ form_label(form, parent() ~ label|trans({}, translation_domain)) }}
-    {% endif %}
-    </div>
-{% endblock checkbox_widget %}
-
-{% block radio_widget %}
-    {% set box_class = box_class|default('radio' ~ (box_inline|default(false) ? '-inline' : '')) %}
-
-    <div class="{{ box_class }}">
-    {% if label is sameas(false) %}
-        {{ parent() }}
-    {% else %}
-        {{ form_label(form, parent() ~ label|trans({}, translation_domain)) }}
-    {% endif %}
-    </div>
-{% endblock radio_widget %}
+{% block radio_row %}
+    {% set group_class  = group_class|default('radio' ~ (box_inline|default(false) ? '-inline' : ''))|trim %}
+    {{ block('box_row') }}
+{% endblock radio_row %}
 
 {# Collection #}
 {% block collection_add_button %}
