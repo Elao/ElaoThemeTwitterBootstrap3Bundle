@@ -13,16 +13,24 @@
 
 {% block form_row %}
 {% spaceless %}
-
-    {% set horizontal = false %}
     {% set label_columns = label_columns|default(3) %}
     {% set widget_columns = widget_columns|default(12 - label_columns) %}
 
     {% set control_group = true %}
     {% set control_group_attr = control_group_attr|default({})|merge({'class': (control_group_attr.class|default('') ~ ' ' ~ control_group_class|default('col-lg-' ~ widget_columns ~ ' col-md-' ~ widget_columns ~ ' col-sm-' ~ widget_columns))|trim}) %}
 
-    {% set label_group = false %}
-    {% set label_attr = label_attr|default({})|merge({'class': (label_attr.class|default('') ~ ' ' ~ label_group_class|default('col-lg-' ~ label_columns ~ ' col-md-' ~ label_columns ~ ' col-sm-' ~ label_columns))|trim}) %}
+    {% set label_attr = label_attr|default({})|merge({'class': (label_attr.class|default('') ~ ' ' ~ label_attr|default('col-lg-' ~ label_columns ~ ' col-md-' ~ label_columns ~ ' col-sm-' ~ label_columns))|trim}) %}
     {{ parent() }}
 {% endspaceless %}
 {% endblock form_row %}
+
+{#% block box_row %}
+{% spaceless %}
+    {% set control_group = true %}
+    {% set label_columns = label_columns|default(3) %}
+    {% set widget_columns = widget_columns|default(12 - label_columns) %}
+
+    {% set control_group_attr = control_group_attr|default({})|merge({'class': (control_group_attr.class|default('') ~ ' ' ~ control_group_class|default('col-lg-' ~ widget_columns ~ ' col-md-' ~ widget_columns ~ ' col-sm-' ~ widget_columns ~ ' col-lg-offset-' ~ label_columns ~ ' col-md-offset-' ~ label_columns ~ ' col-sm-offset-' ~ label_columns))|trim}) %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock box_row %#}
