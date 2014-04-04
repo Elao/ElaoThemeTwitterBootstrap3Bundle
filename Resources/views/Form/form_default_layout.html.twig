@@ -131,6 +131,7 @@
 {% endblock box_row %}
 
 {# Collection #}
+
 {% block collection_add_button %}
 {% spaceless %}
     {% set button_class = button_class|default("btn btn-success") %}
@@ -144,3 +145,65 @@
     {{ parent() }}
 {% endspaceless %}
 {% endblock collection_delete_button %}
+
+{# Date & Time #}
+
+{% block datetime_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ parent() }}
+    {% else %}
+        {% set attr = attr|default({})|merge({class: (attr.class|default('') ~ ' row')|trim}) %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ _self.wrapColumn(form_widget(form.date) ~ form_errors(form.date), 7) }}
+            {{ _self.wrapColumn(form_widget(form.time) ~ form_errors(form.time), 5) }}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock datetime_widget %}
+
+{% block date_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ parent() }}
+    {% else %}
+        {% set width = 12 / 3 %}
+        {% set attr = attr|default({})|merge({class: (attr.class|default('') ~ ' row')|trim}) %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ date_pattern|replace({
+                '{{ year }}':  _self.wrapColumn(form_widget(form.year), width),
+                '{{ month }}': _self.wrapColumn(form_widget(form.month), width),
+                '{{ day }}':  _self.wrapColumn(form_widget(form.day), width),
+            })|raw }}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock date_widget %}
+
+{% block time_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('form_widget_simple') }}
+    {% else %}
+        {% set attr = attr|default({})|merge({class: (attr.class|default('') ~ ' row')|trim}) %}
+        <div {{ block('widget_container_attributes') }}>
+            {% if with_minutes or with_seconds %}
+                {% set width = 12 / (with_minutes and with_seconds ? 3 : 2) %}
+                {{ _self.wrapColumn(form_widget(form.hour), width) }}
+                {% if with_minutes %}{{ _self.wrapColumn(form_widget(form.minute), width) }}{% endif %}
+                {% if with_seconds %}{{ _self.wrapColumn(form_widget(form.second), width) }}{% endif %}
+            {% else %}
+                {{ form_widget(form.hour) }}{% if with_minutes %}:{{ form_widget(form.minute) }}{% endif %}{% if with_seconds %}:{{ form_widget(form.second) }}{% endif %}
+            {% endif %}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock time_widget %}
+
+{# Macros #}
+
+{% macro wrapColumn(content, width) %}
+<div class="col-sm-{{ width }} col-md-{{ width }} col-lg-{{ width }}">
+    {{ content|raw }}
+</div>
+{% endmacro %}
