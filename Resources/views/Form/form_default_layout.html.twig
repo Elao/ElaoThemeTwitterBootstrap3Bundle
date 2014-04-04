@@ -82,20 +82,20 @@
     {% set tag = tag|default('fieldset') %}
     <{{ tag }} {{ block('widget_container_attributes') }}>
     {% for child in form %}
-        {{ form_row(child, {'box_inline': box_inline|default(false) }) }}
+        {{ form_row(child, {'inline': inline|default(false) }) }}
     {% endfor %}
     </{{ tag }}>
 {% endspaceless %}
 {% endblock choice_widget_expanded %}
 
 {% block checkbox_row %}
-    {% set box_class = box_class|default('checkbox' ~ (box_inline|default(false) ? '-inline' : ''))|trim %}
-    {{ block('box_row') }}
+    {% set box_class = box_class|default('checkbox') %}
+    {{ block(inline|default(false) ? 'box_widget' : 'box_row') }}
 {% endblock checkbox_row %}
 
 {% block radio_row %}
-    {% set box_class  = box_class|default('radio' ~ (box_inline|default(false) ? '-inline' : ''))|trim %}
-    {{ block('box_row') }}
+    {% set box_class = box_class|default('radio') %}
+    {{ block(inline|default(false) ? 'box_widget' : 'box_row') }}
 {% endblock radio_row %}
 
 {% block box_row %}
@@ -110,13 +110,7 @@
 
             {{ help and help_position == 'top' ? block('form_help') : '' }}
 
-            <div class="{{ box_class }}">
-            {% if label is sameas(false) %}
-                {{ form_widget(form) }}
-            {% else %}
-                {{ form_label(form, form_widget(form) ~ label|trans({}, translation_domain)) }}
-            {% endif %}
-            </div>
+            {{ block('box_widget') }}
 
             {{ form_errors(form) }}
             {{ block('collection_delete_button') }}
@@ -129,6 +123,21 @@
     </div>
 {% endspaceless %}
 {% endblock box_row %}
+
+{% block box_widget %}
+    {% if inline|default(false) %}
+        {% set label_attr = label_attr|default({})|merge({class: (label_attr.class|default('') ~ ' ' ~ box_class ~ '-inline')|trim}) %}
+        {{ form_label(form, form_widget(form) ~ label|trans({}, translation_domain), {label_attr: label_attr}) }}
+    {% else %}
+        <div class="{{ box_class }}">
+        {% if label is sameas(false) %}
+            {{ form_widget(form) }}
+        {% else %}
+            {{ form_label(form, form_widget(form) ~ label|trans({}, translation_domain), {label_attr: label_attr|default({})}) }}
+        {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}
 
 {# Collection #}
 
