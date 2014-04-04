@@ -82,7 +82,7 @@
     {% set tag = tag|default('fieldset') %}
     <{{ tag }} {{ block('widget_container_attributes') }}>
     {% for child in form %}
-        {{ form_row(child, {'inline': inline|default(false) }) }}
+        {{ form_row(child, {inline: inline|default(false), simple: true}) }}
     {% endfor %}
     </{{ tag }}>
 {% endspaceless %}
@@ -90,39 +90,13 @@
 
 {% block checkbox_row %}
     {% set box_class = box_class|default('checkbox') %}
-    {{ block(inline|default(false) ? 'box_widget' : 'box_row') }}
+    {{ block(inline|default(false) or simple|default(false) ? 'box_widget' : 'box_row') }}
 {% endblock checkbox_row %}
 
 {% block radio_row %}
     {% set box_class = box_class|default('radio') %}
-    {{ block(inline|default(false) ? 'box_widget' : 'box_row') }}
+    {{ block(inline|default(false) or simple|default(false) ? 'box_widget' : 'box_row') }}
 {% endblock radio_row %}
-
-{% block box_row %}
-{% spaceless %}
-    <div {{ block('row_container_attributes') }}>
-        {% if control_group|default(false) %}
-            <div {{ block('control_group_attributes') }}>
-        {% endif %}
-
-            {% set help = help|default(false) %}
-            {% set help_position = help_position|default('bottom') %}
-
-            {{ help and help_position == 'top' ? block('form_help') : '' }}
-
-            {{ block('box_widget') }}
-
-            {{ form_errors(form) }}
-            {{ block('collection_delete_button') }}
-
-            {{ help and help_position == 'bottom' ? block('form_help') : '' }}
-
-        {% if control_group|default(false) %}
-            </div>
-        {% endif %}
-    </div>
-{% endspaceless %}
-{% endblock box_row %}
 
 {% block box_widget %}
     {% if inline|default(false) %}
@@ -137,7 +111,7 @@
         {% endif %}
         </div>
     {% endif %}
-{% endblock %}
+{% endblock box_widget %}
 
 {# Collection #}
 
