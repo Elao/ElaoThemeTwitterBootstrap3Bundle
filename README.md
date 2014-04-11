@@ -6,52 +6,78 @@ Twitter Bootstrap 3 theme for Elao Theme Bundle
 Form Themes
 -----------
 
-Two form layouts provided:
-- __form_default_layout.html.twig__
-- __form_horizontal_layout.html.twig__
+Three form layouts are provided:
 
-To theme all forms as default:
+* `form_default_layout.html.twig`
+* `form_horizontal_layout.html.twig`
+* `form_horizontal_partial_layout.html.twig`
 
-    twig:
-        form:
-            resources:
-                - "ElaoThemeTwitterBootstrap3Bundle:Form:form_default_layout.html.twig"
+To theme all forms as default, in your `app/config/config.yml` file:
+
+```yml
+twig:
+    form:
+        resources:
+            - "ElaoThemeTwitterBootstrap3Bundle:Form:form_default_layout.html.twig"
+```
 
 To theme a specifique form:
 
-    {% form_theme form 'ElaoThemeTwitterBootstrap3Bundle:Form:form_default_layout.html.twig' %}
+```twig
+{% form_theme form 'ElaoThemeTwitterBootstrap3Bundle:Form:form_default_layout.html.twig' %}
+```
 
 ### Form Horizontal:
 
-To theme a specific row as horizontal (optionally specify the column width of the label):
+__To theme a specific row as horizontal__:
 
-    {{ form_row(child, {horizontal: true}) }}
-    {{ form_row(child, {horizontal: true, label_columns: 2}) }}
+Theme your form with the `form_horizontal_partial_layout.html.twig` layout and specify the `horizontal` option when you need it:
 
-To theme a whole form as horizontal:
+```twig
+{{ form_row(child, {horizontal: true}) }}
+```
 
-    {% form_theme form 'ElaoThemeTwitterBootstrap3Bundle:Form:form_horizontal_layout.html.twig' %}
+__To theme a whole form as horizontal:__
+
+Theme the whole form with the `form_horizontal_layout.html.twig` layout:
+
+```twig
+{% form_theme form 'ElaoThemeTwitterBootstrap3Bundle:Form:form_horizontal_layout.html.twig' %}
+```
+
+_Note:_ 100% of the form will be themed as horizontal. If you need one or more field to be standard, use the `form_horizontal_partial_layout.html.twig` layout.
+
+You can also customize the grid behaviour of the field:
+
+```twig
+{{ form_row(child, {horizontal: true, label_columns: 2}) }}
+{{ form_row(child, {horizontal: true, label_columns: 2, widget_columns: 4, grid_size: 6}) }}
+```
 
 Twig helpers
 ------------
 
 ### Tooltip & Popover data attributes renderers:
 
-    <a href="#" title="My title" {{ tooltip({placement: 'bottom'}) }}>
-        Hover me!
-    </a>
+```twig
+<a href="#" title="My title" {{ tooltip({placement: 'bottom'}) }}>
+    Hover me!
+</a>
+```
 
 The _tooltip_ fuction accepts arguments [as defined in Twitter Bootstrap 3](http://getbootstrap.com/javascript/#tooltips)
 
-    <div {{ popover({content: include('AcmeDemoBundle:Foo:bar.html.twig'), html: true}) }}>
-        Click me!
-    </div>
+```twig
+<div {{ popover({content: include('AcmeDemoBundle:Foo:bar.html.twig'), html: true}) }}>
+    Click me!
+</div>
+```
 
 The _popover_ fuction accepts arguments [as defined in Twitter Bootstrap 3](http://getbootstrap.com/javascript/#popovers)
 
 __Note:__ These functions only render html attributes, you need to do the Javascript part, ex:
 
-    <script>
-        $('[data-toggle="tooltip"]').tooltip();
-        $('[data-toggle="popover"]').popover();
-    </script>
+```javascript
+$('[data-toggle="tooltip"]').tooltip();
+$('[data-toggle="popover"]').popover();
+```
