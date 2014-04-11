@@ -8,7 +8,7 @@
         {% set control_group = true %}
         {% set group_attr  = group_attr|default({})|merge({'class': (group_attr.class|default('') ~ ' row')|trim }) %}
         {% set label_columns = label_columns|default(3) %}
-        {% set widget_columns = widget_columns|default(12 - label_columns) %}
+        {% set widget_columns = widget_columns|default(grid_size|default(12) - label_columns) %}
 
         {% set control_group_attr = control_group_attr|default({})|merge({'class': (control_group_attr.class|default('') ~ ' ' ~ control_group_class|default('col-lg-' ~ widget_columns ~ ' col-md-' ~ widget_columns ~ ' col-sm-' ~ widget_columns))|trim}) %}
 
@@ -30,7 +30,7 @@
         {% set control_group = true %}
         {% set group_attr  = group_attr|default({})|merge({'class': (group_attr.class|default('') ~ ' row')|trim }) %}
         {% set label_columns = label_columns|default(3) %}
-        {% set widget_columns = widget_columns|default(12 - label_columns) %}
+        {% set widget_columns = widget_columns|default(grid_size|default(12) - label_columns) %}
 
         {% set control_group_attr = control_group_attr|default({})|merge({'class': (control_group_attr.class|default('') ~ ' ' ~ control_group_class|default('col-lg-' ~ widget_columns ~ ' col-md-' ~ widget_columns ~ ' col-sm-' ~ widget_columns ~ ' col-lg-offset-' ~ label_columns ~ ' col-md-offset-' ~ label_columns ~ ' col-sm-offset-' ~ label_columns))|trim}) %}
     {% endif %}

@@ -150,7 +150,7 @@
     {% if widget == 'single_text' %}
         {{ parent() }}
     {% else %}
-        {% set width = 12 / 3 %}
+        {% set width = grid_size|default(12) / 3 %}
         {% set attr = attr|default({})|merge({class: (attr.class|default('') ~ ' row')|trim}) %}
         <div {{ block('widget_container_attributes') }}>
             {{ date_pattern|replace({
@@ -171,7 +171,7 @@
         {% set attr = attr|default({})|merge({class: (attr.class|default('') ~ ' row')|trim}) %}
         <div {{ block('widget_container_attributes') }}>
             {% if with_minutes or with_seconds %}
-                {% set width = 12 / (with_minutes and with_seconds ? 3 : 2) %}
+                {% set width = grid_size|default(12) / (with_minutes and with_seconds ? 3 : 2) %}
                 {{ _self.wrapColumn(form_widget(form.hour), width) }}
                 {% if with_minutes %}{{ _self.wrapColumn(form_widget(form.minute), width) }}{% endif %}
                 {% if with_seconds %}{{ _self.wrapColumn(form_widget(form.second), width) }}{% endif %}
