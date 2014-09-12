@@ -19,7 +19,7 @@
     {% set control_group = true %}
     {% set control_group_attr = control_group_attr|default({})|merge({'class': (control_group_attr.class|default('') ~ ' ' ~ control_group_class|default('col-lg-' ~ widget_columns ~ ' col-md-' ~ widget_columns ~ ' col-sm-' ~ widget_columns))|trim}) %}
 
-    {% set label_attr = label_attr|default({})|merge({'class': (label_attr.class|default('') ~ ' ' ~ label_attr|default('col-lg-' ~ label_columns ~ ' col-md-' ~ label_columns ~ ' col-sm-' ~ label_columns))|trim}) %}
+    {% set label_attr = label_attr|default({})|merge({'class': (label_attr.class|default('') ~ ' ' ~ label_attr_class|default('col-lg-' ~ label_columns ~ ' col-md-' ~ label_columns ~ ' col-sm-' ~ label_columns))|trim}) %}
     {{ parent() }}
 {% endspaceless %}
 {% endblock form_row %}
