@@ -2,7 +2,7 @@
     "name": "elao/theme-twitter-bootstrap-3-bundle",
     "type": "symfony-bundle",
     "description": "Twitter Bootstrap 3 theme bundle for ElaoThemeBundle",
-    "keywords": ["elao", "theme-bundle"],
+    "keywords": ["elao", "theme-bundle", "twitter", "bootstrap"],
     "homepage": "https://github.com/Elao/ElaoThemeTwitterBootstrap3Bundle",
     "license": "MIT",
     "authors": [
