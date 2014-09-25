@@ -16,8 +16,11 @@
         }
     ],
     "require": {
-        "php":               ">=5.3.4",
-        "elao/theme-bundle": "1.0.*@dev"
+        "php":               ">=5.3.4"
+    },
+    "suggest": {
+        "elao/form-bundle":  "~0.1@dev",
+        "elao/theme-bundle": "~0.1@dev"
     },
     "autoload": {
         "psr-0": {
