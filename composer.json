@@ -23,7 +23,7 @@
         "elao/theme-bundle": "~0.1@dev"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "Elao\\Bundle\\Theme\\TwitterBootstrap3Bundle": "."
         }
     },
@@ -31,6 +31,5 @@
         "branch-alias": {
             "dev-master": "1.0.x-dev"
         }
-    },
-    "target-dir": "Elao/Bundle/Theme/TwitterBootstrap3Bundle"
+    }
 }
