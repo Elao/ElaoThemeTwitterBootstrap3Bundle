@@ -78,6 +78,7 @@
 {# Checkbox and radio #}
 
 {% block choice_widget_expanded %}
+choice_widget_expanded
 {% spaceless %}
     {% set tag = tag|default('fieldset') %}
     <{{ tag }} {{ block('widget_container_attributes') }}>
@@ -90,15 +91,20 @@
 
 {% block checkbox_row %}
     {% set box_class = box_class|default('checkbox') %}
+    {% set group_attr = group_attr|default({})|merge({'class': (group_attr.class|default('') ~ ' ' ~ box_class)|trim }) %}
+
     {{ block(inline|default(false) or simple|default(false) ? 'box_widget' : 'box_row') }}
 {% endblock checkbox_row %}
 
 {% block radio_row %}
     {% set box_class = box_class|default('radio') %}
+    {% set group_attr = group_attr|default({})|merge({'class': (group_attr.class|default('') ~ ' ' ~ box_class)|trim }) %}
+
     {{ block(inline|default(false) or simple|default(false) ? 'box_widget' : 'box_row') }}
 {% endblock radio_row %}
 
 {% block box_widget %}
+    {{ dump(inline) }}
     {% if inline|default(false) %}
         {% set label_attr = label_attr|default({})|merge({class: (label_attr.class|default('') ~ ' ' ~ box_class ~ '-inline')|trim}) %}
         {{ form_label(form, form_widget(form) ~ label|trans({}, translation_domain), {label_attr: label_attr}) }}
