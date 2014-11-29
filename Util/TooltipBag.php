@@ -10,7 +10,7 @@
 
 namespace Elao\Bundle\Theme\TwitterBootstrap3Bundle\Util;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Elao\Bundle\Theme\TwitterBootstrap3Bundle\Util\AttributeBag;
 
 /**
@@ -21,7 +21,7 @@ class TooltipBag extends AttributeBag
     /**
      * {@inheritdoc}
      */
-    protected function setDefaultOptions(OptionsResolverInterface $resolver)
+    protected function setDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             array(
@@ -29,7 +29,7 @@ class TooltipBag extends AttributeBag
             )
         );
 
-        $resolver->setOptional(
+        $resolver->setDefined(
             array(
                 'animation',
                 'html',
@@ -42,22 +42,14 @@ class TooltipBag extends AttributeBag
             )
         );
 
-        $resolver->setAllowedTypes(
-            array(
-                'animation' => 'bool',
-                'html'      => 'bool',
-                'placement' => 'string',
-                'selector'  => array('string', 'bool'),
-                'title'     => 'string',
-                'container' => array('string', 'bool'),
-            )
-        );
+        $resolver->setAllowedTypes('animation', 'bool');
+        $resolver->setAllowedTypes('html', 'bool');
+        $resolver->setAllowedTypes('placement', 'string');
+        $resolver->setAllowedTypes('selector', array('string', 'bool'));
+        $resolver->setAllowedTypes('title', 'string');
+        $resolver->setAllowedTypes('container', array('string', 'bool'));
 
-        $resolver->setAllowedValues(
-            array(
-                'placement' => array('top', 'bottom', 'left', 'right', 'auto'),
-                'trigger'   => array('click', 'hover', 'focus', 'manual'),
-            )
-        );
+        $resolver->setAllowedValues('placement', array('top', 'bottom', 'left', 'right', 'auto');
+        $resolver->setAllowedValues('trigger', array('click', 'hover', 'focus', 'manual');
     }
 }

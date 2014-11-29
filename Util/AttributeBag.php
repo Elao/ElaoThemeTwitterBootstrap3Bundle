@@ -11,7 +11,6 @@
 namespace Elao\Bundle\Theme\TwitterBootstrap3Bundle\Util;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * HTML Attributes Bag
@@ -36,9 +35,9 @@ abstract class AttributeBag
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    abstract protected function setDefaultOptions(OptionsResolverInterface $resolver);
+    abstract protected function setDefaultOptions(OptionsResolver $resolver);
 
     /**
      * Build the attributes based on given options
