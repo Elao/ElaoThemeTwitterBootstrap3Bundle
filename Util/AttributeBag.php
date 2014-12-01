@@ -11,11 +11,12 @@
 namespace Elao\Bundle\Theme\TwitterBootstrap3Bundle\Util;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Elao\Bundle\Theme\TwitterBootstrap3Bundle\Behaviour\AttributeBagInterface;
 
 /**
  * HTML Attributes Bag
  */
-abstract class AttributeBag
+abstract class AttributeBag implements AttributeBagInterface
 {
     /**
      * HTML Attributes
@@ -29,7 +30,7 @@ abstract class AttributeBag
      *
      * @param array $options
      */
-    public function __construct($options = array())
+    public function __construct(array $options = array())
     {
         $this->resolveOptions($options);
     }
