@@ -187,6 +187,18 @@
 {% endspaceless %}
 {% endblock time_widget %}
 
+{# Errors #}
+
+{% block form_errors -%}
+    {% if errors|length > 0 -%}
+    <ul class="list-unstyled">
+        {%- for error in errors -%}
+            <li class="text-danger">{{ error.message }}</li>
+        {%- endfor -%}
+    </ul>
+    {%- endif %}
+{%- endblock form_errors %}
+
 {# Macros #}
 
 {% macro wrapColumn(content, width) %}
