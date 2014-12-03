@@ -1,0 +1,24 @@
+{% block panel %}
+    {% set id = id|default('panel-collapse') %}
+    {% set heading_id = heading_id|default('heading-' ~ id) %}
+    {% set body_id = body_id|default('body-' ~ id) %}
+    {% set heading_tag = heading_tag|default('h5') %}
+
+    <div id="{{ id }}" class="{% block class class|default('panel ' ~ panel_class|default('panel-default')) %}">
+        {% block heading %}
+        <div
+            id="{{ heading_id }}"
+            class="{% block heading_class heading_class|default('panel-heading') %}"
+            {{ collapse({parent: parent, target: '#' ~ body_id}) }}
+        >
+            {% block title title|default('') %}
+        </div>
+        {% endblock %}
+
+        <div id="{{ body_id }}" class="{% block body_class body_class|default('panel-collapse collapse') %}">
+            <div class="panel-body">
+                {% block body body|default('') %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

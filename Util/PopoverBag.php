@@ -10,7 +10,7 @@
 
 namespace Elao\Bundle\Theme\TwitterBootstrap3Bundle\Util;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Elao\Bundle\Theme\TwitterBootstrap3Bundle\Util\TooltipBag;
 
 /**
@@ -21,26 +21,12 @@ class PopoverBag extends TooltipBag
     /**
      * {@inheritdoc}
      */
-    protected function setDefaultOptions(OptionsResolverInterface $resolver)
+    protected function setDefaultOptions(OptionsResolver $resolver)
     {
         parent::setDefaultOptions($resolver);
 
-        $resolver->replaceDefaults(
-            array(
-                'toggle' => 'popover',
-            )
-        );
-
-        $resolver->setOptional(
-            array(
-                'content',
-            )
-        );
-
-        $resolver->setAllowedTypes(
-            array(
-                'content' => 'string',
-            )
-        );
+        $resolver->setDefault('toggle', 'popover');
+        $resolver->setDefined(array('content'));
+        $resolver->setAllowedTypes('content', 'string');
     }
 }

@@ -10,8 +10,10 @@
 
 namespace Elao\Bundle\Theme\TwitterBootstrap3Bundle\Twig\Extension;
 
+use Elao\Bundle\Theme\TwitterBootstrap3Bundle\Behaviour\AttributeBagInterface;
 use Elao\Bundle\Theme\TwitterBootstrap3Bundle\Util\TooltipBag;
 use Elao\Bundle\Theme\TwitterBootstrap3Bundle\Util\PopoverBag;
+use Elao\Bundle\Theme\TwitterBootstrap3Bundle\Util\CollapseBag;
 
 /**
  * Elao Theme Twitter Bootstrap3 Twig Extension
@@ -61,6 +63,7 @@ class TwitterBootstrap3Extension extends \Twig_Extension
         return array(
             new \Twig_SimpleFunction('tooltip', array($this, 'tooltip'), array('is_safe' => array('html'))),
             new \Twig_SimpleFunction('popover', array($this, 'popover'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('collapse', array($this, 'collapse'), array('is_safe' => array('html'))),
         );
     }
 
@@ -81,14 +84,7 @@ class TwitterBootstrap3Extension extends \Twig_Extension
      */
     public function tooltip($parameters = array())
     {
-        $bag = new TooltipBag($parameters);
-
-        return $this->templating->render(
-            'ElaoThemeTwitterBootstrap3Bundle:Block:data_attributes.html.twig',
-            array(
-                'attributes' => $bag->getAttributes(),
-            )
-        );
+        return $this->renderAttributes(new TooltipBag($parameters));
     }
 
     /**
@@ -100,13 +96,33 @@ class TwitterBootstrap3Extension extends \Twig_Extension
      */
     public function popover($parameters = array())
     {
-        $bag = new PopoverBag($parameters);
+        return $this->renderAttributes(new PopoverBag($parameters));
+    }
 
+    /**
+     * Collapse
+     *
+     * @param array $parameters
+     *
+     * @return string
+     */
+    public function collapse($parameters = array())
+    {
+        return $this->renderAttributes(new CollapseBag($parameters));
+    }
+
+    /**
+     * Render attributes
+     *
+     * @param AttributeBagInterface $bag
+     *
+     * @return string
+     */
+    protected function renderAttributes(AttributeBagInterface $bag)
+    {
         return $this->templating->render(
             'ElaoThemeTwitterBootstrap3Bundle:Block:data_attributes.html.twig',
-            array(
-                'attributes' => $bag->getAttributes(),
-            )
+            array('attributes' => $bag->getAttributes())
         );
     }
 
