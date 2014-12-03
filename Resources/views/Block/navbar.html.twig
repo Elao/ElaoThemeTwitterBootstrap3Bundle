@@ -1,29 +1,33 @@
-<div class="{% block class 'navbar' %}" role="navigation">
-    {% block container %}
-    <div class="{% block container_class 'container' %}">
-        {% if header|default(true) %}
-        {% block header_container %}
-        <div class="navbar-header">
-            {% block header_content %}
-                {% block header_toggle %}
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                {% endblock header_toggle %}
-                {% block brand 'Acme' %}
-            {% endblock header_content %}
-        </div>
-        {% endblock header_container %}
-        {% endif %}
+{% set header = header is not defined or header %}
 
-        {% block collapse_container %}
-        <div class="collapse navbar-collapse">
-            {% block navs '' %}
-        </div>
-        {% endblock collapse_container %}
+{% block navbar %}
+    <div class="{% block class class|dafault('navbar') %}" role="navigation">
+        {% block container %}
+            <div class="{% block container_class container_class|default('container') %}">
+                {% block header_container %}
+                    {% if header %}
+                        <div class="navbar-header">
+                            {% block header_content %}
+                                {% block header_toggle %}
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                {% endblock header_toggle %}
+                                {% block brand brand|default('Acme') %}
+                            {% endblock header_content %}
+                        </div>
+                    {% endif %}
+                {% endblock header_container %}
+
+                {% block collapse_container %}
+                    <div class="collapse navbar-collapse">
+                        {% block navs null %}
+                    </div>
+                {% endblock collapse_container %}
+            </div>
+        {% endblock container %}
     </div>
-    {% endblock container %}
-</div>
+{% endblock navbar %}
