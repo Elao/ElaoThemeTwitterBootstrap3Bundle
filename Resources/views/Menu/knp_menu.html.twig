@@ -21,7 +21,7 @@
     {%- endif %}
     {%- if matcher.isCurrent(item) %}
         {%- set classes = classes|merge(['active']) %}
-    {%- elseif matcher.isAncestor(item, options.depth) %}
+    {%- elseif matcher.isAncestor(item, options.matchingDepth) %}
         {%- set classes = classes|merge([options.ancestorClass]) %}
     {%- endif %}
     {%- if item.actsLikeFirst %}
