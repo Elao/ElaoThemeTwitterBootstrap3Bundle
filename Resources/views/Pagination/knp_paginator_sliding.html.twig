@@ -3,7 +3,9 @@
     <ul class="pagination">
         <li class="first {{ current != first ? '' : 'disabled' }}">
             <a href="{{ path(route, query|merge({(pageParameterName): first})) }}" title="{{ 'interface.first'|trans }}" {{ tooltip() }}>
-                <span class="glyphicon glyphicon-step-backward"></span>
+                {% block first_btn %}
+                    <span class="glyphicon glyphicon-step-backward"></span>
+                {% endblock %}
             </a>
         </li>
     </ul>
@@ -13,7 +15,9 @@
         <li class="previous {{ previous is defined ? '' : 'disabled' }}">
             {% set previous_url = previous is defined ? path(route, query|merge({(pageParameterName): previous})) : '#' %}
             <a href="{{ previous_url }}" title="{{ 'interface.previous'|trans }}" {{ tooltip() }}>
-                <span class="glyphicon glyphicon-chevron-left"></span>
+                {% block prev_btn %}
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                {% endblock %}
             </a>
         </li>
 
@@ -28,7 +32,9 @@
         <li class="next {{ next is defined ? '' : 'disabled' }}">
             {% set next_url = next is defined ? path(route, query|merge({(pageParameterName): next})) : '#' %}
             <a href="{{ next_url }}" title="{{ 'interface.next'|trans }}" {{ tooltip() }}>
-                <span class="glyphicon glyphicon-chevron-right"></span>
+                {% block next_btn %}
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                {% endblock %}
             </a>
         </li>
     </ul>
@@ -37,7 +43,9 @@
     <ul class="pagination">
         <li class="last {{ current != last ? '' : 'disabled' }}">
             <a href="{{ path(route, query|merge({(pageParameterName): last})) }}" title="{{ 'interface.last'|trans }}" {{ tooltip() }}>
-                <span class="glyphicon glyphicon-step-forward"></span>
+                {% block last_btn %}
+                    <span class="glyphicon glyphicon-step-forward"></span>
+                {% endblock %}
             </a>
         </li>
     </ul>
