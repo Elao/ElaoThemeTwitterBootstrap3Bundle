@@ -49,7 +49,7 @@ class TooltipBag extends AttributeBag
         $resolver->setAllowedTypes('title', 'string');
         $resolver->setAllowedTypes('container', array('string', 'bool'));
 
-        $resolver->setAllowedValues('placement', array('top', 'bottom', 'left', 'right', 'auto');
-        $resolver->setAllowedValues('trigger', array('click', 'hover', 'focus', 'manual');
+        $resolver->setAllowedValues('placement', array('top', 'bottom', 'left', 'right', 'auto'));
+        $resolver->setAllowedValues('trigger', array('click', 'hover', 'focus', 'manual'));
     }
 }
