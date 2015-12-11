@@ -1,4 +1,4 @@
-ElaoThemeTwitterBootstrap3Bundle
+ElaoThemeTwitterBootstrap3Bundle ![](https://img.shields.io/badge/Symfony-3.0-blue.svg)
 ================================
 
 Twitter Bootstrap 3 theme for Elao Theme Bundle
@@ -7,18 +7,9 @@ Installation:
 --------------
 
 Add ElaoThemeTwitterBootstrap3Bundle to your composer.json:
-``` json
-{
-    "require": {
-        "elao/theme-twitter-bootstrap-3-bundle": "~1.0"
-    }
-}
-```
-
-Now download the bundle by running the command:
 
 ``` bash
-$ php composer.phar update elao/theme-twitter-bootstrap-3-bundle
+$ composer require elao/theme-twitter-bootstrap-3-bundle 2.0
 ```
 
 Register the bundle in the kernel:
