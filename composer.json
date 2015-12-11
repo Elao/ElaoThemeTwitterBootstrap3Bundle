@@ -16,11 +16,10 @@
         }
     ],
     "require": {
-        "php":               ">=5.3.4"
+        "php": ">=5.3.4"
     },
     "suggest": {
-        "elao/form-bundle":  "~0.1@dev",
-        "elao/theme-bundle": "~0.1@dev"
+        "elao/form-bundle": "~2.0@dev"
     },
     "autoload": {
         "psr-4": {
@@ -29,7 +28,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "2.0.x-dev"
         }
     }
 }

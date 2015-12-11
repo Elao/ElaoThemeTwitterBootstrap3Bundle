@@ -11,9 +11,8 @@ To theme all forms as default, in your `app/config/config.yml` file:
 
 ```yml
 twig:
-    form:
-        resources:
-            - "ElaoThemeTwitterBootstrap3Bundle:Form:form_default_layout.html.twig"
+    form_themes:
+        - "ElaoThemeTwitterBootstrap3Bundle:Form:form_default_layout.html.twig"
 ```
 
 To theme a specifique form:
