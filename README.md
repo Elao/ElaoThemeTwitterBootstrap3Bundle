@@ -1,4 +1,4 @@
-ElaoThemeTwitterBootstrap3Bundle
+ElaoThemeTwitterBootstrap3Bundle ![](https://img.shields.io/badge/Symfony-2.3-blue.svg)
 ================================
 
 Twitter Bootstrap 3 theme for Elao Theme Bundle
