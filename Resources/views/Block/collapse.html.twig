@@ -1,7 +1,7 @@
 {% block panel %}
-    {% set id = id|default('panel-collapse') %}
-    {% set heading_id = heading_id|default('heading-' ~ id) %}
-    {% set body_id = body_id|default('body-' ~ id) %}
+    {% set id          = id|default('panel-collapse') %}
+    {% set heading_id  = heading_id|default('heading-' ~ id) %}
+    {% set body_id     = body_id|default('body-' ~ id) %}
     {% set heading_tag = heading_tag|default('h5') %}
 
     <div id="{{ id }}" class="{% block class class|default('panel ' ~ panel_class|default('panel-default')) %}">

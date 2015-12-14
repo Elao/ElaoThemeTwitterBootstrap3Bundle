@@ -1,0 +1,7 @@
+{# Macros #}
+
+{% macro wrapColumn(content, width) %}
+<div class="col-sm-{{ width }} col-md-{{ width }} col-lg-{{ width }}">
+    {{ content|raw }}
+</div>
+{% endmacro %}
