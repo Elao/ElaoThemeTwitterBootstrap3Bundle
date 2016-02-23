@@ -82,7 +82,7 @@
     {% set tag = tag|default('fieldset') %}
     <{{ tag }} {{ block('widget_container_attributes') }}>
     {% for child in form %}
-        {{ form_row(child, {inline: inline|default(false), simple: true}) }}
+        {{ form_row(child, {inline: inline|default(false), simple: true, translation_domain: choice_translation_domain}) }}
     {% endfor %}
     </{{ tag }}>
 {% endspaceless %}
@@ -105,13 +105,13 @@
 {% block box_widget %}
     {% if inline|default(false) %}
         {% set label_attr = label_attr|default({})|merge({class: (label_attr.class|default('') ~ ' ' ~ box_class ~ '-inline')|trim}) %}
-        {{ form_label(form, form_widget(form) ~ label|trans({}, translation_domain), {label_attr: label_attr}) }}
+        {{ form_label(form, form_widget(form) ~ (translation_domain is same as(false) ? label : label|trans({}, translation_domain)), {translation_domain: false, label_attr: label_attr}) }}
     {% else %}
         <div class="{{ box_class }}">
         {% if label is same as(false) %}
             {{ form_widget(form) }}
         {% else %}
-            {{ form_label(form, form_widget(form) ~ label|trans({}, translation_domain), {label_attr: label_attr|default({})}) }}
+            {{ form_label(form, form_widget(form) ~ (translation_domain is same as(false) ? label : label|trans({}, translation_domain)), {translation_domain: false, label_attr: label_attr|default({})}) }}
         {% endif %}
         </div>
     {% endif %}
